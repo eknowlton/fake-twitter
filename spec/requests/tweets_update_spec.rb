@@ -18,9 +18,9 @@ RSpec.describe 'Tweets Update API', type: :request do
             params: { 'tweet': { 'tweet': 'New Updated tweet... :/' } },
             headers: { 'Authorization': user.token }
 
-      tweet.reload
       expect(response).to have_http_status(:success)
-      expect(response.body).to eq(user.tweets.first.to_json)
+      tweet = JSON.parse response.body
+      expect(tweet).to include('tweet')
     end
   end
 

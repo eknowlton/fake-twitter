@@ -17,7 +17,8 @@ RSpec.describe 'Tweets Create API', type: :request do
            headers: { 'Authorization': user.token }
 
       expect(response).to have_http_status(:created)
-      expect(response.body).to eq(user.tweets.first.to_json)
+      tweet = JSON.parse response.body
+      expect(tweet).to include('tweet')
     end
   end
 

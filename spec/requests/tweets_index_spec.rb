@@ -15,7 +15,8 @@ RSpec.describe 'Tweets Index API', type: :request do
       get tweets_index, headers: { 'Authorization': user.token }
 
       expect(response).to have_http_status(:success)
-      expect(response.body).to eq(user.tweets.to_json)
+      tweets = JSON.parse response.body
+      expect(tweets.count).to eq(1)
     end
   end
 
