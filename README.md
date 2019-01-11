@@ -1,24 +1,73 @@
-# README
+## Twitter
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails API mimicking basic functionality of Twitter.
 
-Things you may want to cover:
+---
 
-* Ruby version
+### Features
+- Follow/Unfollow Users
+- Post/Edit/Delete/Update Tweets
+- View a feed of tweets of your followed users
+- Like/unlike tweets
+- Retweet another tweet
+- List users following you
 
-* System dependencies
+---
+### Requests 
 
-* Configuration
+RSpec Request Tests are the best way to figure out which requests can be made.
 
-* Database creation
+See users that follow you:
 
-* Database initialization
+`GET /follow/index`
 
-* How to run the test suite
+Follow a user:
 
-* Services (job queues, cache servers, search engines, etc.)
+`POST /follow/store/{User ID}`
 
-* Deployment instructions
+Unfollow a user:
 
-* ...
+`DELETE /follow/destroy/{User Followed ID}`
+
+See who follows you:
+
+`GET /followers/index`
+
+Like a tweet:
+
+`POST /likes/store/{Tweet ID}`
+
+Unlike a tweet:
+
+`DESTROY /likes/destroy/{Tweet Liked ID}`
+
+See tweets by people you've followed:
+
+`GET /feed/index`
+
+See your tweets:
+
+`GET /tweets/index`
+
+Create a tweet:
+
+`POST /tweets/store`
+
+```
+{ 
+    tweet: {
+        tweet: 'Tweet content up to 255 chars',
+        retweet_id: 1 
+    }
+}
+```
+
+*Retweet id is the tweet id you wish to retweet.*
+
+Update a tweet:
+
+`PATCH /tweets/update/{Tweet ID}`
+
+Delete a tweet:
+
+`DESTROY /tweets/destroy/{Tweet ID}`
